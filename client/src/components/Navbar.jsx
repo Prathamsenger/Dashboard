@@ -5,7 +5,6 @@ import {
   Menu as MenuIcon,
   Search,
   SettingsOutlined,
-  ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
 import { useDispatch } from "react-redux";
@@ -16,6 +15,7 @@ import {
   InputBase,
   Toolbar,
   useTheme,
+  Box,
 } from "@mui/material";
 
 const Navbar = () => {
@@ -24,15 +24,15 @@ const Navbar = () => {
 
   return (
     <AppBar
+      position="static"
       sx={{
-        position: "static",
         background: "none",
         boxShadow: "none",
       }}
     >
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: "space-between", gap: " 1050px"  }}>
         {/* Left Side */}
-        <FlexBetween>
+        <FlexBetween gap="1rem">
           <IconButton onClick={() => console.log("open/close sidebar")}>
             <MenuIcon />
           </IconButton>
@@ -40,7 +40,7 @@ const Navbar = () => {
           <FlexBetween
             backgroundColor={theme.palette.background.alt}
             borderRadius="9px"
-            gap="3rem"
+            gap="0.5rem"
             p="0.1rem 1.5rem"
           >
             <InputBase placeholder="Search..." />
@@ -51,7 +51,7 @@ const Navbar = () => {
         </FlexBetween>
 
         {/* Right Side */}
-        <FlexBetween gap="1.5rem">
+        <Box  gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined sx={{ fontSize: "25px" }} />
@@ -63,7 +63,7 @@ const Navbar = () => {
           <IconButton>
             <SettingsOutlined sx={{ fontSize: "25px" }} />
           </IconButton>
-        </FlexBetween>
+        </Box>
       </Toolbar>
     </AppBar>
   );
