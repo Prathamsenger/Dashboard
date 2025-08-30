@@ -18,7 +18,7 @@ import {
   Box,
 } from "@mui/material";
 
-const Navbar = () => {
+const Navbar = ({ isSidebarOpen, setSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -30,41 +30,41 @@ const Navbar = () => {
         boxShadow: "none",
       }}
     >
-      <Toolbar sx={{ justifyContent: "space-between", gap: " 1050px"  }}>
+      <Toolbar sx={{ justifyContent: "space-between", gap: "1050px" }}>
         {/* Left Side */}
-        <FlexBetween gap="1rem">
-          <IconButton onClick={() => console.log("open/close sidebar")}>
-            <MenuIcon />
-          </IconButton>
+         <FlexBetween gap="1rem">
+    <IconButton onClick={() => setSidebarOpen(!isSidebarOpen)}>
+      <MenuIcon />
+    </IconButton>
 
-          <FlexBetween
-            backgroundColor={theme.palette.background.alt}
-            borderRadius="9px"
-            gap="0.5rem"
-            p="0.1rem 1.5rem"
-          >
-            <InputBase placeholder="Search..." />
-            <IconButton>
-              <Search />
-            </IconButton>
-          </FlexBetween>
-        </FlexBetween>
+    <FlexBetween
+      backgroundColor={theme.palette.background.alt}
+      borderRadius="9px"
+      gap="0.5rem"
+      p="0.1rem 1.5rem"
+    >
+      <InputBase placeholder="Search..." />
+      <IconButton>
+        <Search />
+      </IconButton>
+    </FlexBetween>
+  </FlexBetween>
 
-        {/* Right Side */}
-        <Box  gap="1.5rem">
-          <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
-              <DarkModeOutlined sx={{ fontSize: "25px" }} />
-            ) : (
-              <LightModeOutlined sx={{ fontSize: "25px" }} />
-            )}
-          </IconButton>
+  {/* Right Side */}
+  <Box display="flex" alignItems="center" gap="1.5rem">
+    <IconButton onClick={() => dispatch(setMode())}>
+      {theme.palette.mode === "dark" ? (
+        <DarkModeOutlined sx={{ fontSize: "25px" }} />
+      ) : (
+        <LightModeOutlined sx={{ fontSize: "25px" }} />
+      )}
+    </IconButton>
 
-          <IconButton>
-            <SettingsOutlined sx={{ fontSize: "25px" }} />
-          </IconButton>
-        </Box>
-      </Toolbar>
+    <IconButton>
+      <SettingsOutlined sx={{ fontSize: "25px" }} />
+    </IconButton>
+  </Box>
+</Toolbar>
     </AppBar>
   );
 };
